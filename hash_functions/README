@@ -1,0 +1,40 @@
+File Description
+________________
+
+	SimpleHashSet.java
+		an abstract class implementing SimpleSet.
+
+	ChainedHashSet.java
+		a hash-set based on chaining. Extends SimpleHashSet. In this 
+		model, each cell in the hash table is a list (“bucket”), and 
+		an element with the hash k is added to the k’th bucket (after 
+		fitting to the legal index range in the array using modulo 
+		and abs). I decided to implement it as an arrayList of 
+		linkedLists contains strings. more on that on Design chapter.  
+
+	OpenHashSet.java
+		a hash-set based on open-hashing with quadratic probing.
+		Extends SimpleHashSet. In this model each cell in the hash 
+		table is a reference to a String. When a new string is mapped 
+		to unoccupied cell, there’s need to probe further in the array 
+		to find an empty spot. In this exercise we’ll be using 
+		quadratic probing: the i’th attempt to find an empty cell for, 
+		or to simply find, will use the index :
+ 						   hashValue + (i + i * i) / 2)
+
+	CollectionFacadeSet.java
+		The Facade is a neat, or a compact API, wrapping a more complex
+	 	API, less suitable to the task at hand. In this exercise, 
+		we’d like our set implementation to have a common type with 
+		java’s sets, but without having to implement all of 
+		java’s Set<String> interface which contains much more methods 
+		than we actually need. We'll be using it in the 
+		SimpleSetPerformanceAnalyzer class to wrap all of our 
+		structures.
+
+
+	SimpleSetPerformanceAnalyzer.java
+		has a main method that measures the run-times requested in the 
+		“Performance Analysis” section. We will measure in this class
+		all the results of running the structures we created and givens
+		java structures and compare between theme using 2 datas.

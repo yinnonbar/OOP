@@ -1,0 +1,358 @@
+yinnonbar
+
+
+File Description
+________________
+
+	Node.java
+		an abstract class that defining how a node should be like. this is
+		an abstract class that so it only contains methods but doesn't 
+		implements them. the methods included :
+		public Node(int data) - A constructor that gets as input a data 
+								and put it in node.
+		
+		public Node(int data, Node parent) - 
+			A constructor that gets data and parent and creates the node with 
+		 	the data and the given parent for this node.
+		
+		public Node(Node node) - 
+			A constructor that gets the parameters as given in the node.  
+		
+		public abstract int getData() - 
+			An abstract method that gives the data of the node.
+		
+		public abstract void setData(int data) -
+			An abstract method that sets given data in a node.
+		
+		
+		public abstract Node getParent() -
+			An abstract method that gets the parent of a node.
+		
+		public abstract void setParent(Node node) - 
+			An abstract method that	sets to a node a parent as the given node.
+		
+		public abstract Node getRightChild() - 
+			An abstract method that gets the right child of a node.
+		
+		public abstract void setRightChild(Node node) - 
+			An abstract method that sets to a node the right child as given.
+		
+		public abstract Node getLeftChild() - 
+			An abstract method that gets the left child of a node.
+		
+		public abstract void setLeftChild(Node node) - 
+			An abstract method that sets to a node the left child as given.									  											    						   									
+		
+		public abstract boolean isLeaf() -
+			An abstract method that checks if a node is a leaf (has no 
+			children). 
+		
+	treeNode.java
+		A class extending Node - the abstract class that defines how a node in 
+		a binary search tree should be and defining the methods such a node 
+		has. the methods included :
+		
+		public treeNode(int data) - 
+			Constructor super from Node.
+		
+		public treeNode(int data, Node parent) - 
+			Constructor super from Node.
+		
+		public treeNode(treeNode node) -
+			Constructor super from Node.
+		
+		public int getData() - 
+			Implementing the abstract method from Node class.
+		
+		public void setData(int data) - 
+			Implementing the abstract method from Node class.
+		
+		public Node getParent() - 
+			Implementing the abstract method from Node class.
+			
+		public Node getRightChild() -
+			Implementing the abstract method from Node class.
+		
+		public Node getLeftChild() - 
+			Implementing the abstract method from Node class.
+			
+		public boolean isLeaf() - 
+			Implementing the abstract method from Node class.
+		
+		public void setRightChild(Node node) -
+			Implementing the abstract method from Node class.
+			
+		public void setLeftChild(Node node) - 
+			Implementing the abstract method from Node class.
+		
+		public void setParent(Node node) - 
+			Implementing the abstract method from Node class.
+			
+		
+		
+	Bst.java
+		This class Bst - Binary search tree is an abstract class defining how 
+		a binary search tree should be and which methods it must have.
+		The methods included :
+		public Bst()- 
+			A default constructor.
+		
+		public Bst(int[] data) -
+			A data constructor. a constructor that builds the tree by adding 
+			the elements in the input array one by one. if the same value 
+			appears twice or more in the list it's ignored. Also adding the 
+			elements to the ArrayList and sort it.
+			
+		public abstract boolean add(int newValue) - 
+			 Add anew node with key newValue into the tree. return false iff 
+			 newValue already exist in the tree.
+		
+		public abstract int contains(int searchVal) - 
+			Does tree contains a given input value. return if val is found in 
+			the tree, return the depth of its node (where 0 is the root). 
+			otherwise returns -1.
+		
+		public abstract boolean delete(int toDelete) -
+			An abstract method that removes a node from the tree if it's exist.
+			return true iff toDelete is found and deleted.
+		
+		public abstract int size() - 
+			return number of nodes in the tree.
+		
+		public abstract ArrayList<Integer> getArrayList() -
+			An abstract method that gets the ArrayList of the tree.
+
+		public abstract Node minimal(Node node) - 
+				 An abstract method that gives the minimal node in a subtree.
+				 return the minimal node in the given subtree.
+		
+		public abstract Node maximal(Node node) -  
+			An abstract method that gives the maximal node in a subtree. 
+			return the minimal node in the given subtree.
+		
+		public abstract Node successor(Node node) - 
+			An abstract method that return the successor (the bigger next 
+			value) to a given node.
+		
+		public abstract int getHeight(Node node) - 
+			An abstract method that returns the height of a node.
+			return - the height of the node. if node is null returns -1.
+			 
+		public abstract void checkViolation(Node node) -
+				An abstract method that checks for violations in the tree and 
+				fixes it as needed.
+	 
+		public abstract Node searchNode(Node node, int searchValue) -
+			An abstract method that returns the node that his data matches to 
+			the given val. return the node that his data matches to the given 
+			val. if not found returns null.
+		
+		public abstract Iterator<Integer> iterator() - 
+			return iterator to the Tree. the returned iterator can pass over 
+			the tree nodes in ascending order.
+		
+		
+		
+	AvlTree.java
+		 This class is the class that implements all the methods for an Avl 
+		 tree.This class extends from Bst - binary search tree since Avl tree 
+		 is a kind of Bst and implements the method as required in an Avl tree.
+		 The methods included :
+		 public AvlTree() - 
+ 		 	A default constructor.
+		 
+		 public AvlTree(int[] data) - 
+		 	A data constructor. a constructor that builds the tree by adding 
+		 	the elements in the input array one by one. if the same value 
+		 	appears twice or more in the list it's ignored. Also adding the 
+		 	elements to the ArrayList and sort it.
+		 	
+		public AvlTree(AvlTree tree) - 
+			A copy constructor - a constructor that builds the tree a copy of 
+			an existing tree.
+		
+		public boolean add(int newValue) - 
+			 Add anew node with key newValue into the tree. return false iff 
+			 newValue already exist in the tree.
+		
+		public int contains(int searchVal) - 
+			Does tree contains a given input value. return if val is found in 
+			the tree, return the depth of its node (where 0 is the root). 
+			otherwise returns -1.
+		
+		public boolean delete(int toDelete) -
+			A method that removes a node from the tree if it's exist.
+			return true iff toDelete is found and deleted.
+		
+		public  int size() - 
+			return number of nodes in the tree.
+	
+		public Iterator<Integer> iterator() -
+			Returns iterator to the Avl tree. the returned iterator can pass 
+			over the tree nodes in ascending order. 
+		
+		
+		public ArrayList<Integer> getArrayList() - 
+			A getter for the ArrayList of the tree.
+
+		private void rotateLeft(Node node) -
+			rotate Left method -  the left rotation, which results in a 
+			movement in a counter-clockwise direction.   
+	
+		private void rotateRight(Node node) -		
+			Rotate Right method -results in a rotation of the tree in the 
+			clockwise direction. 
+		
+		private void doubleRotateRightLeft (Node node) - 
+			this method is double rotate right left.
+			
+		private void doubleRotateLeftRight (Node node) - 
+			this method is double rotate left right.
+			
+		public void checkViolation(Node node) - 
+			checks violation method is a method that gets a node and checks if 
+	 		there's no violations in it balance, if do than re-balance it.
+	
+	 	public Node maximal(Node node) - 
+	 		A method that returns the maximal node in a subtree.
+	 		
+	 	public Node minimal(Node node) - 
+	 		A method that returns the minimal node in a subtree.
+	 		
+	 	public Node successor(Node node) - 
+			A method that return the successor (the bigger next value) to a 
+			given node. 
+	 
+		public int getHeight(Node node) -
+			A method that returns the height of a node.
+	 		return the height of the node. if node is null returns -1.
+		
+		public Node searchNode(Node node, int searchValue) -
+			A method that returns the node that his data matches to the given 
+			val. return the node that his data matches to the given val. 
+			if not found returns null.
+	 	
+	 	private class Avliterator implements Iterator<Integer> -
+	 		An inner class that implements the iterator.
+	 		
+	 		public boolean hasNext() -
+	 			implementing the method hasNext, that checks if there's a 
+	 			value we can iterate.	
+	 		
+	 		public Integer next() throws NoSuchElementException -
+	 			 Implementing the next method that iterate the next node.
+	 	
+	 		public void remove() throws UnsupportedOperationException -
+	 			remove method - have to implement it on the API of iterator but
+	 			there's no need in it in this implementation so only throwing 
+	 			an exception in case of user trying to use it.
+				
+	 	public static int findMinNodes(int h) - 
+	 		This methods calculates the minimum number of nodes in an AVL tree 
+	 		of height h. this is a static method since it needs no specific 
+	 		show of an AVL tree.
+		
+	README
+		This file.
+
+Design
+______ 
+
+	In this project I created 4 classes, I'll explain for each and every one
+	of them why I decided to create them, how I implemented them, why and
+	how does it helps me to implement the AVL tree structure.
+	First of all If were talking about an avl tree there are 2 main thing that
+	we have to think about while talking about it :
+	The first thing is the structure of the tree. Avl tree is first of all a
+	binary search tree, it has the same properties and many things are the 
+	same, but the main difference is that Avl tree is doing things in other
+	way than other Bsts. Therefore I decided to create an abstract class Bst
+	which is a class that has the methods which all the Bsts has but doesn't
+	implements none of them. I also created a class called AvlTree. this class
+	is the class that makes all the things that Avl tree does, for example
+	Balancing. in this structure my tree only heir from Bst but i can do 
+	the actions on it however I want and in the future I can add other types
+	of Bsts without damaging this tree only by creating another class that
+	also extends Bst.
+	The second thing that an Avl tree is built from is the nodes. like every
+	other tree it contains Nodes that contains the datas in the tree.
+	I created once again an abstract class called Node which is a general 
+	class for nodes and a class called treeNode which is a class that heir from
+	Node and designed for my Avl tree.
+	These are the two important things that my design for this exercise are 
+	built on.    
+	
+	Add method :
+		My add method is based on the algorithm given in Wikipedia with little 
+		changes.
+		I'm starting checking in the root. First of all if the root is null,
+		means there's nothing in the tree so I'm setting in the root the data
+		that were given.
+		If the root is not null I'm running on the tree till I'm meeting a leaf
+		in three ways :
+		If the data is bigger than the data in the current node were checking
+		than were going right because of the structure of the Avl tree which
+		says that the right child is bigger than the parent and the left child
+		is smaller than the parent.
+		If there's no right child than we adding the data as right child since
+		the node that were checking now is the current biggest and sending
+		to the method checkViolation to find if there are violations and if
+		there's so fix it.
+		The same thing in the symmetrical case.
+		If we met a node with the value were looking for than we return
+		false since it's already in the tree and there's no need to add it.
+		After finishing the loop were checking if the data is bigger than the
+		data on the node or smaller and setting it as needed and check for 
+		violations.
+		The methods that being used here are checkViolation, and the setters 
+		for left and right child. 
+	Delete method :
+		This method is based on the Wikipedia algorithm and an algorithm given
+		on the book of Cormen.
+		First of all I'm using the searchNode method to check if the node is in
+		the tree, and if it returns null means it's not so we can return false
+		since there's nothing to delete.
+		Now we have some cases about that node that we want to delete if we
+		know that it's exist in the tree.
+		Were going to the node and we have to delete it from the tree but it
+		depends if it has children or not. if it has than we have to "save"
+		the children and than after deleting the data from the tree now they
+		dont have parent so we have to reconnect them to the parent parent, but
+		we have to know if it has other children or not and beside of it while
+		we're doing it we have to make rotations since we can take the tree
+		out of balance.
+		I used in this method some helper methods.  
+		First of all of course the setters and getters for children and parent
+		and the successor method. 
+		Second the searchNode since in that way I can check easily if the node
+		doesn't exist in the tree and also I can run on the tree with that node
+		and make compares.
+		The main method being used here is the checkViolation. all the fixes
+		if needed means rotations are in this method and it has the "knowledge"
+		on what a i-balanced tree is and what to do in every case to 
+		re-balance it, therefore if a deletion occurred than were calling this
+		method to re-balance.
+		
+Question
+________
+	Here is a series of 12 numbers that adding them one by one we'll get a 
+	Avl tree in the height of 4.
+	First insertion :6
+					 7
+   					 5
+					 8
+					 4
+					 9
+					 3
+					10
+					 2
+					11
+					 1
+					12
+Special Comments
+________________
+	First of all I was helped with my friends and family that already finished 
+	studying and they helped me coming up with the design and algorithms.
+	I also used the book of Cormen for algorithms, Wikipedia and other
+	sites on the net to find algorithms and ways to implement the methods.
+		

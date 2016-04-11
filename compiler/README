@@ -1,0 +1,188 @@
+File Description
+________________
+
+	The file consists 4 packages :
+	
+	1. main - which contains :
+	
+	AssignmentLine - This class represents an s-java assignment line. (X = Y)
+	
+	CompilationException - An exception for compilation errors.
+	
+	IllegalReturnLocationUsageException - This exception extends the 
+	CompilationException and being thrown when an illegal value is given as 
+	the return location.
+	
+	IllegalSyntaxException - This exception extends the Exception class and
+	being thrown when an illegal syntax line is given.
+	
+	Parser - This class is the parser. It is reading the lines in the file 
+	and turning it to objects while checking each line syntax.
+	
+	ReturnLine - This class represents a return line 
+	(Consist the "return" expression). Extending the SjavaLine class.
+	
+	Sjavac - This class is the main class of program. This is the compiler, it
+	is taking the lines from the parser and prints the matching message.
+	
+	SJavaLine - This class represents an s-java line in the file being read.
+	
+	SJavaSyntax - This class represents all the valid syntax for a line in 
+	s-java file.
+	
+	2. main.parameters - which contains :
+	
+	IllegalNameException - This exception indicates that a name is a keyword.
+	
+	IllegalParameterException - This exception indicates that there is a 
+	parameter syntax exception.
+	
+	MethodCalling - This class represents a s-java line method calling. 
+	Extending the Parameter class.
+	
+	MethodCallingException - This exception indicates that there is a 
+	compilation error in a method calling.
+	
+	MethodCallingNotExistException - This exception indicates that the method 
+	calling isn't exist, a compilation error.
+	
+	Operandable - This interface indicates that a parameter is operandable.
+	
+	Parameter - This abstract class is the parameter class, extends SJavaLine 
+	and designed to work with initializing variables and method calling.
+	
+	ParameterCompilationException - This exception indicates that there is a 
+	compilation error in a parameter.
+	
+	ParameterNotExistException - This exception indicates that a parameter 
+	isn't exist, a compilation error.
+	
+	3. main.parameters.variables - which contains :
+	
+	BooleanType - This class is the BooleanType extends the variable class 
+	(true\false).
+	
+	CharType - This class is the CharType extends the variable class.
+	
+	DoubleType - This class is the DoubleType extends the variable class 
+	(5,5.2), and it is also implements Operandable interface (5+3.2).
+	
+	GenericType - This class is the GenericType variable, extends the variable 
+	class. GenericType is a variable which his type is unknown in the syntax 
+	check phase.
+	
+	IllegalArrayLocationException - This exception indicates there is an error 
+	in the array location (abc[-1]).
+	
+	IllegalVariableSyntaxException - This exception indicates that there is a 
+	syntax error in a variable.
+	
+	IllegalVariableTypeException - This exception indicates that there is a 
+	syntax error in the variable type.
+	
+	IntegerType - This class represents the integer type variable, 
+	extends from double type.
+	
+	MethodCallingTypeMismatchException - This exception indicates that there 
+	is a method calling return variable mismatch to the assigned variable.
+	
+	NotOperandableMethodCallingException - This exception indicates that a 
+	method calling return variable isn't operandable while using it with 
+	operand.
+	
+	NotOperandableVariableException - This exception indicates that a variable 
+	isn't operandable while using it with operand.
+	
+	StringType - This class represents a string variable, extends from 
+	variable class.
+	
+	UninitializedVariableException - This exception indicates that an 
+	uninitialized variable used for assignment, compilation error.
+	
+	Variable - This abstract class represent all of the legitimate variables 
+	in s-java. It extends the parameter class.
+	
+	VariableAlreadyExistException - This exception extends the 
+	CompilationException and being thrown when a variable is already exist.
+	
+	VariableCompilationException - This exception indicates that there is a 
+	compilation error with the variable.
+	
+	VariableFactory - This class represents the variable factory.
+	
+	VariableNotExistException - This exception indicates that a variable 
+	isn't exist, compilation error.
+	
+	VariableTypeMismatchException - This exception indicates that there is a 
+	variable mismatch to the assigned variable.
+	
+	VoidMethodException - This exception indicates that there is a method 
+	calling returning void used in assignment.
+	
+	4. main.scopes - which contains :
+	
+	ConditionalScope - This class represents a scope containing a condition. 
+	(if / while scope). Extending the Scope class.
+	
+	MethodScope - This class represents a method scope in the s-java file. 
+	Extends the Scope class.
+	
+	MismatchConditionTypeException - This exception indicates that the 
+	condition is not a boolean type.
+	
+	Scope - This class represents a scope in the s-java file.
+			
+	README - This file.
+
+Design
+______ 
+	
+	In this project, since we have been asked to build a compiler, 
+	there is a total separation between the
+	syntax checking and the compilation checking (the "IsValid" method).
+	Basically, we created a tree when each node is a scope. 
+	There are 2 different scopes that inheriting from the scope class,
+	the method scope and the simple scope (an if/while scope).
+	Each scope also have an array list of SJavaLine object, 
+	this line represent everything but a scope. 
+	First, in the syntax process we created a switch for each line regex
+	we could encounter when reading the lines from the file.
+	This switch knows what regex the line match with an enum that check it.
+	(this enum is in the SJavaSyntax class that also contains most of the
+	complier regexes)
+	Once we know what regex this line match to, we created an SJavaLine object
+	and added it to the relevant scope SJavaLine array.
+	After all the lines in the file converted to objects and the syntax
+	process is complete, we checked each SJavaLine with an abstract method
+	in the SJavaLine abstract class "IsValid".(each line option class inherit
+	from the abstract class SJavaLine)
+	We separated the packages in this project inside the main package
+	"filescript" to a scope package and an SJavaLine package.
+	We chose to used exceptions in the error handling issue because of the fact
+	that in this way we can use hierarchy in the exception catching.
+	Since we are using different exception classes with inheritance,
+	when an exception being catch we can throw a precise error message
+	indicating the mistake. (we also implemented the print stack trace in each
+	exception with the constructor of the message)
+	In case we need to add a new type of variable we just need to implement it
+	while extending from the Variable abstract class.(Obviously we will need
+	to add the new type name to the SJavaSyntax different regexes).
+	Implementing an if-else block would be quite easy.
+	Since we made a simple block class containing a condition representing
+	both if and while blocks, we will need to separate them to different
+	classes.
+	When we encounter an else scope we will create an object of a Scope type
+	and the syntax check would be checking in the father array of child scopes
+	if before the this else scope there is an instance of an if scope.
+	We used variable declaration regex and declaration method regex with
+	groups to get all the data required for the constructor of each class.
+	In variable declaration regex the groups are the following: type, name,
+	equal sign(doesn't have to appear), value(doesn't have to appear).
+	In declaration method regex the groups are the following: return type,
+	name, all the parameters(doesn't have to appear).
+	Additionally, we did an inheritance from integer to double because that
+	in the assignment integer can be assigned to double but not the other way
+	around. We also did an Operandable interface indicating if a parameter
+	can be with operand or not.
+	Because of this separation from parsing to compilation in this project,
+	We really think the design and implementation stands out from the rest.

@@ -1,0 +1,122 @@
+File Description
+________________
+
+	The file consists 4 packages :
+	1. filescript - which contains :
+		myFileScript - This is the manager class of the program. It makes all 
+		the running of the program.
+		Parser - This class is the parser. It reads the command file and divide 
+		it into sections, where each section consists a filter and an order.
+		Sections - This class checks if the files that were given passes the 
+		filter and sort them.
+		
+	2. filters - which contains :
+		Filter - This is the parent interface for all of the filters. Showing 
+		basically how a filters should be like, and therefore has one method 
+		returns a boolean value that determine if a filter is passed or not.
+		BooleanFilters - This is the parent abstract class for all the filters 
+		that returns a boolean value and depends on the answer given YES or NO.
+		SizeFilters - This is an abstract class and is the parent class for all 
+		the filters that checks for size values.
+		StringFilters - This is an abstract class parent for all the filters 
+		that deals with strings.
+		FilterFactory - This class is the factory for the filters, "creates" 
+		the match filter as given in user's request.
+		AllFilter - All files are matched.
+		NotFilter -  This class is the NOT filter, means this filter satisfies 
+		exactly all files not satisfied by the original filter.
+		GreaterThan - This is the filter for greater than that checks if a file 
+		size is bigger than a given size.
+		SmallerThan - This filter checks if the file is smaller than a given 
+		size.
+		Between - Determine whether a file size is between the given numbers.
+		FileName - This filter checks if a given name is equal to the file's 
+		name.
+		ContainsName - This filter checks if a string is contained in a file 
+		name.
+		PrefixName - This class checks if a given string is the prefix of the 
+		file.
+		SuffixName - This class checks if a given string is the suffix of the 
+		file.
+		ExecutableFilter - This filter checks if a given file has execution 
+		permission.
+		HiddenFilter - This filter checks if a file is a hidden file.
+		WritableFilter - This filter checks if a file has writing permission 
+		or not.
+	
+	3. order - which contains :
+		Order - Order is an interface for all the orders that are in use in 
+		this project. Giving the template for all of the possible used orders. 
+		This interface extends the java's comparator and will determine between
+		two files (as possible values are  1 if the first file bigger, 
+		0 if equal and -1 else.
+		OrderFactory - This class is the factory for the orders, "creates" 
+		the match order as given by user.
+		Abs - Sort files by absolute name going from 'a' to 'z' implementing 
+		Order interface and acts as a comparator between the two given files.
+		Type - This class implements the order interface and sort files by 
+		file type, going from 'a' to 'z'.
+		Size - This class implements the order interface and sorting the files
+		by their sizes from the smallest to the largest.
+		Reverse - This class implements the order interface and means that 
+		the file should be printed opposite to the given order.
+	
+	4. exceptions - which contains :
+		IllegalArgumentException - This exception is for case an illegal 
+		argument was given.
+		OrderTypeException - This exception is for the order type exception.
+		BetweenNumbersException - This is an Exception for between Numbers 
+		filter.
+		PositiveNumExpectedException - This exception is for a case that a 
+		positive number was expected but a negative was given.
+			
+	README
+		This file.
+
+Design
+______ 
+
+	In my project there are four packages where each one of them has it's own
+	part in the project and are divided by logic way.
+	First of all there is the filescript package which contains the manager
+	class (MyFileScript) the Parser and the Sections. 
+	This package actually do the job in this project. The parser is reading
+	the lines and divide it into sections, in sections I check if the files
+	are passing the filter and if they do then sort them by the match order
+	and in the manager all the program is running and it consists the main
+	method.
+	The second package is the filters. in this package there's a one interface
+	that is the parent for all of the filters and shows the way any filter 
+	should be. There are three types of filters in this project. One which
+	deals with boolean value (depends on the answer YES or NO). Another one
+	which deals with the files sizes and making compares between the file's
+	size and given parameters and one which deals with the name of the file.
+	The third package is the order. Once again there is an interface that
+	is giving a template for all the orders that in this project and a order 
+	here is a comparator that compares between two given files and determine
+	which one of them will be the first, therefore this interface extends the
+	java's comparator.
+	The last package is the exceptions package which contains all the 
+	exceptions that are in use in this project.
+	In this project I implemented the design as shown in the class because
+	as I see it it was the best way to design it and in the way the packages
+	divided it has logic and make the project more comfortable.
+	
+Question
+________
+	
+	Questions 1 and 2 are answered in the Design part.
+	
+	How did you handle the different errors :
+	There are two ways to deal with the errors. the First one is an error
+	that ends with a warning and the second way is the type2 errors which
+	leads to an ERROR message.
+	Another thing I had to do is to mention the line where the error is so I
+	created a counter that count the lines and when I used readLine method
+	I added one to the counter.
+	
+	Which data structures did you use to sort your matched files ?
+	I used an array list to put in all my files and then I used collection's 
+	sort method in order to sort it with the order as the key for the sort.
+	
+		
